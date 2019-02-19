@@ -30,7 +30,7 @@ int primalidade (int numero, int sqrt_numero) {
 	if (numero <= sqrt_numero) {
 		return numero;
 	}
-	else if (numero%sqrt_numero == 0){
+	else if (numero%(sqrt_numero) == 0){
 		return 0;
 	}
 	return primalidade (numero, sqrt_numero+2);
