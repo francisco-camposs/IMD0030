@@ -6,12 +6,13 @@ using namespace std;
 class Aluno {
 	public:
 		unsigned long int matricula;
-		char nome[30];
-		char curso[30];
+		char nome[40];
+		char curso[20];
 		int nota[3];
 		float presenca; // Porcentagem;
 
 		void frequencia();
+		void imprime_dados();
 };
 
 void Aluno::frequencia () {
@@ -19,9 +20,17 @@ void Aluno::frequencia () {
 		cout << "Não é reprovado por falta" << endl;
 	}
 	else {
-		cout << "Está reprovao por falta" << endl;
+		cout << "Está reprovado por falta" << endl;
 	}
 }
+
+void Aluno::imprime_dados(){
+	cout << "Nome: " << nome << endl;
+	cout << "matrícula: " << matricula << endl;
+	cout << "Curso: " << curso << endl;
+}
+
+
 
 int main () {
 
@@ -33,17 +42,19 @@ int main () {
 	for (int i = 0; i < numero_de_alunos; i++){
 		cout << "Digite a matricula do aluno " << i << ": " << endl;
 		cin >> aluno[i].matricula;
-
-		cout << "Digite o nome do aluno " << i << ": " << endl;
-		char String[20];
-		cin >> String;
-		strcpy(aluno[i].nome, String);
-		strcpy(String, "");
+		cout << aluno[i].matricula << endl;
 
 		cout << "Digite o curso do aluno " << i << ": " << endl;
-		cin >> String;
-		strcpy(aluno[i].curso, String);
-		strcpy(String, "");
+		cin.getline(aluno[i].curso,20);
+		strcpy(aluno[i].curso, "");
+		cin.getline(aluno[i].curso, 20);
+		cout << aluno[i].curso << endl;
+
+		cout << "Digite o nome do aluno " << i << ": " << endl;
+		cin.getline(aluno[i].curso,20);
+		strcpy(aluno[i].nome, "");
+		cin.getline(aluno[i].nome, 40);
+		cout << aluno[i].nome << endl;
 
 		cout << "Digite as notas do aluno " << i << ": " << endl;
 		for(int i = 0; i < 3; i++){
