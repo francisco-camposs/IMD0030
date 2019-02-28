@@ -1,4 +1,5 @@
 #include <iostream>
+#ifndef Aluno
 
 using namespace std;
 
@@ -20,3 +21,5 @@ class Aluno{
 		void getN_Imprimir_Atributos();
 		Aluno ();	
 };
+
+#endif
