@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <string> 
 
 using namespace std;
 
@@ -21,4 +21,6 @@ class Carro {
 		float getQtdeCombustivel();
 		float getAutonomia();
 		float getDistanciaPercorrida();
+
+		friend ostream& operator<<(ostream& o,const Carro &carro_);
 };
