@@ -1,5 +1,5 @@
 #include <iostream>
-#include "vetor.h"
+#include "conjunto.h"
 
 using namespace std;
 
@@ -12,8 +12,10 @@ int main (){
 	cout << Set;
 
 	Conjunto<int> Set2;
-	for (int i = 10; i <= 23; i++)
+	for (int i = 10; i <= 23; i++){
 		Set2.add_member(i);
+		Set2.add_member(i);
+	}
 
 	cout << Set2;
 	cout << "União: " <<Set + Set2;
