@@ -12,16 +12,12 @@ int main (){
 	cout << Set;
 
 	Conjunto<int> Set2;
-	for (int i = 15; i <= 20; i++)
+	for (int i = 10; i <= 20; i++)
 		Set2.add_member(i);
 
 	cout << Set2;
-	
-	Set.add_member(Set2);
+	cout << Set-Set2;
 
-	cout << Set;
-
-	Set.print();
-
+	cout << "Soma: " << Set+Set2;
 	return 0;
 }

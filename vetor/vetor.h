@@ -21,14 +21,20 @@ class Conjunto{
 		int total();
 
 		//Sobrecarga de Operadores
+		// Operador de acesso para não ter de usar uma função 
+		//para acessar um membro	
 		T operator[](int indice);
 
-		Conjunto<T> operator+ (Conjunto<T> Set);
-		Conjunto<T> operator- (Conjunto<T> Set);
-		Conjunto<T> operator/ (Conjunto<T> Set);
+		//União simples de conjuntos
+		Conjunto<T>& operator+(Conjunto<T>& Set);
+		// Diferença simples de conjuntos
+		Conjunto<T>& operator-(Conjunto<T>& Set);
+		// Diferença simétrica de conjuntos
+		Conjunto<T>& operator/(Conjunto<T>& Set);
 
 		template <typename Type>
-		friend ostream& operator<< (ostream & os, Conjunto<Type>& Set);
+		friend ostream& operator<< (ostream & os,
+									Conjunto<Type>& Set);
 };
 
 template<typename T>
@@ -36,7 +42,10 @@ Conjunto<T>::Conjunto(){/*	*/};
 
 template<typename T>
 Conjunto<T>::~Conjunto(){
-
+	int tam_vetor = vetor.size();
+	for (int i = 0; i < tam_vetor; i++){
+		vetor.pop_back();
+	}
 };
 
 template<typename T>
@@ -72,22 +81,50 @@ T Conjunto<T>::operator[](int indice){
 };
 
 template <typename T>
-Conjunto<T> Conjunto<T>::operator+ (Conjunto<T> Set){
-
+Conjunto<T>& Conjunto<T>::operator+ (Conjunto<T>& Set){
+	int tam_vetor = vetor.size();
+	int tam_Set = Set.total();
+	int contador = 0;
+	for (int i = 0; i < tam_vetor; i++){
+		while(contador < tam_Set && vetor[i] != Set[contador]){
+			contador++;
+		}
+		if (contador == tam_Set){
+			Set.add_member(vetor[i]);
+		} 
+		contador = 0;
+	}
 	return Set;
 };
+
+template <typename T>
+Conjunto<T>& Conjunto<T>::operator-(Conjunto<T>& Set){
+	int tam_Set = Set.total();
+	int tam_vetor = vetor.size();
+	int contador = 0;
+	for (int i = 0; i < tam_vetor; i++){
+		while(contador < tam_Set && vetor[i] != Set[contador]){
+			contador++;
+		}
+		if (contador == tam_Set){
+			Set.add_member(vetor[i]);
+		} 
+		contador = 0;
+	}
+	return Set;
+}
 
 template <typename Type>
 ostream& operator<< (ostream & os, Conjunto<Type>& Set)
 {
-  	os << "Conjunto: ";
+	os << "{";
 	for (int i = 0; i < Set.total(); i++){
-		os << Set[i] << "; ";
+		os << Set[i];
+		if (i != Set.total()-1)
+			os << ", ";
 	}
-	cout << "\n";
+	cout << "}\n";
 	return os;
 };
-
-
 
 #endif
