@@ -16,8 +16,10 @@ int main (){
 		Set2.add_member(i);
 
 	cout << Set2;
-	cout << Set-Set2;
+	cout << "Subtração: " << (Set-Set2);
+	cout << "Depois da operação: " << Set;
+	cout << "Depois da operação: " << Set2;
 
-	cout << "Soma: " << Set+Set2;
+	// cout << "Soma: " << Set+Set2;
 	return 0;
 }

@@ -18,23 +18,23 @@ class Conjunto{
 		void add_member(T member);
 		void add_member(Conjunto Set);
 		void print();
-		int total();
+		int total() const;
 
 		//Sobrecarga de Operadores
 		// Operador de acesso para não ter de usar uma função 
 		//para acessar um membro	
-		T operator[](int indice);
+		T operator[](int indice) const;
 
 		//União simples de conjuntos
 		Conjunto<T>& operator+(Conjunto<T>& Set);
 		// Diferença simples de conjuntos
-		Conjunto<T>& operator-(Conjunto<T>& Set);
+		Conjunto<T> operator-(Conjunto<T>& Set);
 		// Diferença simétrica de conjuntos
 		Conjunto<T>& operator/(Conjunto<T>& Set);
 
 		template <typename Type>
 		friend ostream& operator<< (ostream & os,
-									Conjunto<Type>& Set);
+									const Conjunto<Type>& Set);
 };
 
 template<typename T>
@@ -61,7 +61,7 @@ void Conjunto<T>::add_member(Conjunto set){
 };
 
 template <typename T>
-int Conjunto<T>::total(){
+int Conjunto<T>::total() const{
 	return vetor.size();
 };
 
@@ -76,7 +76,7 @@ void Conjunto<T>::print(){
 };
 
 template <typename T>
-T Conjunto<T>::operator[](int indice){
+T Conjunto<T>::operator[](int indice) const{
 	return vetor[indice];
 };
 
@@ -84,43 +84,47 @@ template <typename T>
 Conjunto<T>& Conjunto<T>::operator+ (Conjunto<T>& Set){
 	int tam_vetor = vetor.size();
 	int tam_Set = Set.total();
+	Conjunto<T> diferenca;
+	diferenca.add_member(Set);
 	int contador = 0;
 	for (int i = 0; i < tam_vetor; i++){
 		while(contador < tam_Set && vetor[i] != Set[contador]){
 			contador++;
 		}
 		if (contador == tam_Set){
-			Set.add_member(vetor[i]);
+			diferenca.add_member(vetor[i]);
 		} 
 		contador = 0;
 	}
-	return Set;
+	return diferenca;
 };
 
 template <typename T>
-Conjunto<T>& Conjunto<T>::operator-(Conjunto<T>& Set){
+Conjunto<T> Conjunto<T>::operator-(Conjunto<T>& Set){
 	int tam_Set = Set.total();
 	int tam_vetor = vetor.size();
+	Conjunto<T> diferenca;
 	int contador = 0;
 	for (int i = 0; i < tam_vetor; i++){
 		while(contador < tam_Set && vetor[i] != Set[contador]){
 			contador++;
 		}
 		if (contador == tam_Set){
-			Set.add_member(vetor[i]);
+			diferenca.add_member(vetor[i]);
 		} 
 		contador = 0;
 	}
-	return Set;
+	return diferenca;
 }
 
 template <typename Type>
-ostream& operator<< (ostream & os, Conjunto<Type>& Set)
+ostream& operator<< (ostream & os, const Conjunto<Type>& Set)
 {
+	int tam_vetor = Set.total();
 	os << "{";
-	for (int i = 0; i < Set.total(); i++){
+	for (int i = 0; i < tam_vetor; i++){
 		os << Set[i];
-		if (i != Set.total()-1)
+		if (i != tam_vetor-1)
 			os << ", ";
 	}
 	cout << "}\n";
