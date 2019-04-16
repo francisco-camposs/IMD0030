@@ -20,18 +20,22 @@ class Conjunto{
 		void print();
 		int total() const;
 
-		//Sobrecarga de Operadores
-		// Operador de acesso para não ter de usar uma função 
-		//para acessar um membro	
+		// Sobrecarga de Operadores
+	public:
+		// Operador de acesso para não ter de usar uma função.
+		// Para acessar um membro.
 		T operator[](int indice) const;
 
-		//União simples de conjuntos
-		Conjunto<T>& operator+(Conjunto<T>& Set);
+		// União simples de conjuntos
+		Conjunto<T> operator+(Conjunto<T>& Set);
+
 		// Diferença simples de conjuntos
 		Conjunto<T> operator-(Conjunto<T>& Set);
-		// Diferença simétrica de conjuntos
-		Conjunto<T>& operator/(Conjunto<T>& Set);
 
+		// Diferença simétrica de conjuntos
+		Conjunto<T> operator/(Conjunto<T>& Set);
+
+		// Operador de extração, tô cansado de ficar chamando função.
 		template <typename Type>
 		friend ostream& operator<< (ostream & os,
 									const Conjunto<Type>& Set);
@@ -81,7 +85,7 @@ T Conjunto<T>::operator[](int indice) const{
 };
 
 template <typename T>
-Conjunto<T>& Conjunto<T>::operator+ (Conjunto<T>& Set){
+Conjunto<T> Conjunto<T>::operator+ (Conjunto<T>& Set){
 	int tam_vetor = vetor.size();
 	int tam_Set = Set.total();
 	Conjunto<T> diferenca;
@@ -114,6 +118,34 @@ Conjunto<T> Conjunto<T>::operator-(Conjunto<T>& Set){
 		} 
 		contador = 0;
 	}
+	return diferenca;
+}
+
+template <typename T>
+Conjunto<T> Conjunto<T>::operator/(Conjunto<T>& Set){
+	int tam_Set = Set.total();
+	int tam_vetor = vetor.size();
+	Conjunto<T> diferenca;
+	int contador = 0;
+	for (int i = 0; i < tam_vetor; i++){
+		while(contador < tam_Set && vetor[i] != Set[contador]){
+			contador++;
+		}
+		if (contador == tam_Set){
+			diferenca.add_member(vetor[i]);
+		} 
+		contador = 0;
+	}
+	for (int i = 0; i < tam_Set; i++){
+		while(contador < tam_vetor && Set[i] != vetor[contador]){
+			contador++;
+		}
+		if (contador == tam_vetor){
+			diferenca.add_member(Set[i]);
+		} 
+		contador = 0;
+	}
+
 	return diferenca;
 }
 

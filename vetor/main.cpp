@@ -12,11 +12,13 @@ int main (){
 	cout << Set;
 
 	Conjunto<int> Set2;
-	for (int i = 10; i <= 20; i++)
+	for (int i = 10; i <= 23; i++)
 		Set2.add_member(i);
 
 	cout << Set2;
-	cout << "Subtração: " << (Set-Set2);
+	cout << "União: " <<Set + Set2;
+	cout << "Diferença simples: " << Set-Set2;
+	cout << "Diferença Simétrica: " << Set / Set2;
 	cout << "Depois da operação: " << Set;
 	cout << "Depois da operação: " << Set2;
 
