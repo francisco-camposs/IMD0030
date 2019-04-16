@@ -29,11 +29,14 @@ class Conjunto{
 		// União simples de conjuntos
 		Conjunto<T> operator+(Conjunto<T>& Set);
 
+		// Intersecção de conjuntos
+		Conjunto<T> operator/(Conjunto<T>& Set);
+
 		// Diferença simples de conjuntos
 		Conjunto<T> operator-(Conjunto<T>& Set);
 
 		// Diferença simétrica de conjuntos
-		Conjunto<T> operator/(Conjunto<T>& Set);
+		Conjunto<T> operator%(Conjunto<T>& Set);	
 
 		// Operador de extração, tô cansado de ficar chamando função.
 		template <typename Type>
@@ -88,19 +91,36 @@ template <typename T>
 Conjunto<T> Conjunto<T>::operator+ (Conjunto<T>& Set){
 	int tam_vetor = vetor.size();
 	int tam_Set = Set.total();
-	Conjunto<T> diferenca;
-	diferenca.add_member(Set);
+	Conjunto<T> uniao;
+	uniao.add_member(Set);
 	int contador = 0;
 	for (int i = 0; i < tam_vetor; i++){
 		while(contador < tam_Set && vetor[i] != Set[contador]){
 			contador++;
 		}
 		if (contador == tam_Set){
-			diferenca.add_member(vetor[i]);
+			uniao.add_member(vetor[i]);
 		} 
 		contador = 0;
 	}
-	return diferenca;
+	return uniao;
+};
+template<typename T>
+Conjunto<T> Conjunto<T>::operator/(Conjunto<T>& Set){
+	int tam_Set = Set.total();
+	int tam_vetor = vetor.size();
+	Conjunto<T> interseccao;
+	int contador = 0;
+	for (int i = 0; i < tam_vetor; i++){
+		while(contador < tam_Set && vetor[i] != Set[contador]){
+			contador++;
+		}
+		if (contador != tam_Set){
+			interseccao.add_member(vetor[i]);
+		} 
+		contador = 0;
+	}
+	return interseccao;
 };
 
 template <typename T>
@@ -122,7 +142,7 @@ Conjunto<T> Conjunto<T>::operator-(Conjunto<T>& Set){
 }
 
 template <typename T>
-Conjunto<T> Conjunto<T>::operator/(Conjunto<T>& Set){
+Conjunto<T> Conjunto<T>::operator%(Conjunto<T>& Set){
 	int tam_Set = Set.total();
 	int tam_vetor = vetor.size();
 	Conjunto<T> diferenca;

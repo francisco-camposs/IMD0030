@@ -17,8 +17,9 @@ int main (){
 
 	cout << Set2;
 	cout << "União: " <<Set + Set2;
+	cout << "Interseccao: " << Set / Set2;
 	cout << "Diferença simples: " << Set-Set2;
-	cout << "Diferença Simétrica: " << Set / Set2;
+	cout << "Diferença Simétrica: " << Set % Set2;
 	cout << "Depois da operação: " << Set;
 	cout << "Depois da operação: " << Set2;
 
