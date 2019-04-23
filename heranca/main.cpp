@@ -21,12 +21,21 @@ int main (){
 	cout << Joeverson.getNome() << endl;
 
 	// Upcasting
-	Aluno *cleiton = new Pessoa;
-	cleiton->setNome("Cleiton");
-	cout << cleiton->getNome() << endl;
-	cleiton->setMedia(10.0);
-	cout << cleiton->getMedia() << endl;
+	Pessoa * Marcos = new Aluno;
+	Marcos->setNome("Marcos");
+	cout << Marcos->getNome() << endl;
+	Marcos->setPeso(12.234);
+	cout << Marcos->getPeso() << endl;
 
+	// Downcasting
+	Aluno *cleiton = new Aluno;
+	Pessoa *Cleiton = (Aluno*) cleiton;
+	Cleiton->setNome("Cleiton");
+	cout << Cleiton->getNome() << endl;
+	Cleiton->setPeso(10.0);
+	cout << Cleiton->getPeso() << endl;
+
+	cout << sizeof(char) << endl; 
 
 
 	return 0;
