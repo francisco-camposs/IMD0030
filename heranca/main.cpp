@@ -1,18 +1,10 @@
+#ifndef _MAIN_CPP_
+#define _MAIN_CPP_
+
 #include <iostream>
 #include "aluno.h"
 
 using namespace std;
-
-// void setIdade(int idade_);
-// void setPeso(float peso_);
-// void setNome(string nome_);
-
-// int getIdade();
-// float getPeso();
-// string getNome();
-// void setMedia(float media_);
-// float getMedia();
-
 
 int main (){
 
@@ -35,8 +27,9 @@ int main (){
 	Cleiton->setPeso(10.0);
 	cout << Cleiton->getPeso() << endl;
 
-	cout << sizeof(char) << endl; 
-
+	cout << sizeof(char) << endl;
 
 	return 0;
-}
+};
+
+#endif
