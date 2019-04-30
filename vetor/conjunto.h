@@ -59,11 +59,11 @@ Conjunto<T>::~Conjunto(){
 
 template<typename T>
 void Conjunto<T>::add_member(T member){
-	for (int i = 0; i < vetor.size(); i++){
-		if (vetor[i] == member){
-			return;
-		}
-	}
+	// for (int i = 0; i < vetor.size(); i++){
+	// 	if (vetor[i] == member){
+	// 		return;
+	// 	}
+	// }
 	vetor.push_back(member);
 };
 
@@ -84,11 +84,6 @@ int Conjunto<T>::total() const{
 
 template<typename T>
 void Conjunto<T>::print(){
-	int tamanho = vetor.size();
-	cout << "Conjunto: ";
-	for (int i = 0; i < tamanho; i++){
-		cout << vetor[i] << " ";
-	}
 	cout << endl;
 };
 
