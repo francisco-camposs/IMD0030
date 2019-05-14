@@ -41,6 +41,13 @@ void inserir(Vetor * VV, int Pos, char Valor){
 	VV->N++;
 }
 
+void destruir_vetor(Vetor *VV){
+	if (VV->Dado != NULL)
+		delete[] VV->Dado;
+	else
+		cout << "Errou" << endl;
+}
+
 void remover(Vetor * VV, int Pos){
 	if (Pos >= VV->N || VV->N == 0){
 		cout << "ERROOOOOOOOOUUU!!!" << endl;
@@ -73,5 +80,8 @@ int main (){
 		cout << Vector.Dado[i] << " ";
 	}
 	cout << endl;
+
+	destruir_vetor(&Vector);
+	destruir_vetor(&Vector);
 	return 0;
 }
